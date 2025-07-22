@@ -5,6 +5,7 @@ import { ProductDetail } from './components/product-detail/product-detail';
 import {  ProductListComponent } from './components/product-list/product-list';
 import { Cart } from './components/cart/cart';
 import { CheckoutComponent } from './components/checkout/checkout';
+import { Navbar } from './components/navbar/navbar';
 
 
 
@@ -17,18 +18,12 @@ import { CheckoutComponent } from './components/checkout/checkout';
     ProductDetail,
     ProductListComponent,
     Cart,
-   
-    CheckoutComponent
+   Navbar,
+    CheckoutComponent,
+    RouterModule
   ],
-  template: `
-    <nav>
-      <a routerLink="/">Home</a> |
-      <a routerLink="/products">Products</a> |
-      <a routerLink="/cart">Cart</a> |
-      <a routerLink="/checkout">Checkout</a>
-    </nav>
-    <hr />
-    <router-outlet />
-  `
+
+ templateUrl:'./app.html'
+ 
 })
 export class AppComponent {}

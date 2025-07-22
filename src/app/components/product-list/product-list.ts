@@ -8,15 +8,8 @@ import { Product } from '../../services/product';
   selector: 'app-product-list',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  template: `
-    <h2>Products</h2>
-    <ul>
-      <li *ngFor="let product of products">
-        {{ product.name }} - ₹{{ product.price }}
-        <a [routerLink]="['/product', product.id]">View</a>
-      </li>
-    </ul>
-  `
+  templateUrl:'./product-list.html' ,
+   styleUrls: ['./product-list.css']
 })
 export class ProductListComponent implements OnInit {
   products: any[] = [];

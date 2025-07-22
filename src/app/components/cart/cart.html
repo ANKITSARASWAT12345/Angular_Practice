@@ -1,7 +1,9 @@
 <h2>Your Cart</h2>
-<ul>
+<div *ngIf="cartItems.length === 0">Your cart is empty.</div>
+
+<ul *ngIf="cartItems.length > 0">
   <li *ngFor="let item of cartItems">
-    {{ item.name }} - ₹{{ item.price }}
+    <img [src]="item.image" alt="{{ item.name }}" style="width: 100px; height: 100px;">
+    <strong>{{ item.name }}</strong> - ₹{{ item.price }}
   </li>
 </ul>
-
