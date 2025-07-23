@@ -6,6 +6,8 @@ import {  ProductListComponent } from './components/product-list/product-list';
 import { Cart } from './components/cart/cart';
 import { CheckoutComponent } from './components/checkout/checkout';
 import { Navbar } from './components/navbar/navbar';
+import { Login } from './components/login/login';
+import { Signup } from './components/signup/signup';
 
 
 
@@ -20,7 +22,9 @@ import { Navbar } from './components/navbar/navbar';
     Cart,
    Navbar,
     CheckoutComponent,
-    RouterModule
+    RouterModule,
+    Login,
+    Signup
   ],
 
  templateUrl:'./app.html'

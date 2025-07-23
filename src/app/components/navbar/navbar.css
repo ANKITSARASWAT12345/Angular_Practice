@@ -1,33 +1,61 @@
-/* src/app/components/navbar/navbar.component.css */
+/* src/app/navbar/navbar.css */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #1976d2; /* blue */
-  color: white;
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 15px 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.sticky-navbar {
+  position: sticky;
+  top: 0;
 }
 
 .logo {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: #fff;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 20px;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .nav-links li a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
-.nav-links li a:hover {
-  color: #ffeb3b; /* yellow on hover */
+.nav-links li a:hover,
+.active-link {
+  color: #ffc107;
+}
+
+.auth-buttons .login-btn {
+  padding: 8px 16px;
+  background-color: #ffc107;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.auth-buttons .login-btn:hover {
+  background-color: #e0a800;
 }
