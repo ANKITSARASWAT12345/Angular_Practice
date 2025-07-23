@@ -6,7 +6,6 @@ import { Home } from './components/home/home';
 
 import {  ProductListComponent } from './components/product-list/product-list';
 
-import { ProductDetail } from './components/product-detail/product-detail';
 
 import { Cart } from './components/cart/cart';
 
@@ -18,6 +17,7 @@ import { TermsConditions } from './components/terms-conditions/terms-conditions'
 import { ContactComponent } from './components/contact-us/contact-us';
 import { Login } from './components/login/login';
 import { Signup } from './components/signup/signup';
+import { ProductDetailComponent } from './components/product-detail/product-detail';
 
 
 export const routes: Routes = [
@@ -30,7 +30,7 @@ export const routes: Routes = [
     {path:'privacy-policy',component:PrivacyPolicy},
     {path:'terms',component:TermsConditions},
     {path:'products', component:ProductListComponent},
-    {path:'product/:id',component:ProductDetail},
+    {path:'product/:id',component:ProductDetailComponent},
     {path:'cart',component:Cart},
     {path:'checkout',component:CheckoutComponent}
 ];

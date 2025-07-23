@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.css'],
   imports:[CommonModule,ReactiveFormsModule]
 })
+
 export class Signup {
   signupForm: FormGroup;
 

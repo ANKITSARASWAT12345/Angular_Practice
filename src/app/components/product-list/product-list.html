@@ -8,7 +8,7 @@
     </div>
     <div class="product-actions">
       <button (click)="addToCart(product)">🛒 Add to Cart</button>
-      <a [routerLink]="['/product-detail', product.id]">🔍 View</a>
+     <a [routerLink]="['/product', product.id]" class="btn view-btn">View</a>
     </div>
   </div>
 </div>

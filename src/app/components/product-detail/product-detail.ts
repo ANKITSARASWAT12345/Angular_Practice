@@ -3,29 +3,31 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Product } from '../../services/product';
 import { CartService } from '../../services/cart';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [],
   templateUrl: './product-detail.html',
-  styleUrl: './product-detail.css'
+  styleUrls: ['./product-detail.css'],
+  imports:[CommonModule]
 })
-export class ProductDetail implements OnInit {
-  product:any;
+export class ProductDetailComponent implements OnInit {
+  product: any;
+
   constructor(
-    private route:ActivatedRoute,
-    private productService:Product,
-    private cartService:CartService
-  ){}
+    private route: ActivatedRoute,
+    private productService: Product,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
-      const id=Number(this.route.snapshot.paramMap.get('id'));
-      this.product=this.productService.getProductById(id);
-
+    const id = +this.route.snapshot.paramMap.get('id')!;
+    this.product = this.productService.getProductById(id);
+    console.log('Fetched Product:', this.product);
   }
 
-  addToCart(){
-    this.cartService.addToCart(this.product);
-    alert("Added to Cart!")
+  addToCart(product: any): void {
+    this.cartService.addToCart(product);
+    alert(`${product.name} has been added to your cart!`);
   }
 }
