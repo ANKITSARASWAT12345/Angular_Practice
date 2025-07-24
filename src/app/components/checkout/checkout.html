@@ -1,0 +1,26 @@
+<!-- src/app/checkout/checkout.html -->
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <div *ngIf="cartItems.length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div *ngIf="cartItems.length > 0">
+    <ul class="checkout-items">
+      <li *ngFor="let item of cartItems">
+        <div>
+          <strong>{{ item.name }}</strong>
+          <p>Price: ₹{{ item.price }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="total">
+      <h3>Total Amount: ₹{{ totalAmount }}</h3>
+    </div>
+
+    <button class="btn btn-success">Place Order</button>
+  </div>
+</div>

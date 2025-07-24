@@ -1,0 +1,26 @@
+<div class="cart-container">
+  <div class="cart-header">Your Shopping Cart</div>
+
+  <div *ngIf="cartItems.length === 0">Your cart is empty.</div>
+
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <img [src]="item.image" alt="{{ item.name }}">
+    <div class="item-details">
+      <div class="item-name">{{ item.name }}</div>
+      <div class="item-price">₹{{ item.price }}</div>
+      <div>{{item.availability}}</div>
+      <div class="item-quantity">
+        <button (click)="decreaseQuantity(item)">-</button>
+        {{ item.quantity }}
+        <button (click)="increaseQuantity(item)">+</button>
+      </div>
+    </div>
+    <button class="remove-btn" (click)="removeFromCart(item)">Remove</button>
+  </div>
+
+  <div class="total-section">
+    Total ({{ getTotalItems() }} items): ₹{{ getTotalPrice() }}
+  </div>
+
+  <button class="checkout-btn" (click)="proceedToCheckout()">Proceed to Checkout</button>
+</div>
