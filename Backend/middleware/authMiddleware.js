@@ -19,11 +19,16 @@ const protect = async (req, res, next) => {
     }
 
     next();
+    
   } catch (error) {
     console.error('JWT Error:', error.message);
     return res.status(401).json({ message: 'Invalid token' });
   }
+
+
 };
+
+
 
 // Middleware: Admin check
 const isAdmin = (req, res, next) => {

@@ -31,7 +31,13 @@ exports.placeOrder = async (req, res) => {
 exports.getUserOrders = async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.user.id }).populate('orderItems.productId');
+
+    if(!orders){
+      res.json("no order found")
+    }
+
     res.json(orders);
+
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch orders' });
   }
