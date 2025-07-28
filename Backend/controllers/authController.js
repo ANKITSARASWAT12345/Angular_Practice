@@ -1,55 +1,43 @@
-
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../Models/User');
 
-// Generate JWT token
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+
+const createToken = (user) => {
+  return jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
+    expiresIn: '1d',
+  });
 };
 
-// Register new user
-exports.registerUser = async (req, res) => {
-  const { name, email, password, role } = req.body; // ✅ include `role`
+exports.signup = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
 
-  const userExists = await User.findOne({ email });
-  if (userExists) {
-    return res.status(400).json({ message: 'User already exists' });
+    const userExists = await User.findOne({ email });
+    if (userExists) return res.status(400).json({ message: 'User already exists' });
+
+    const user = await User.create({ name, email, password });
+    const token = createToken(user);
+    res.status(201).json({ token });
+  } catch (err) {
+    res.status(500).json({ message: 'Signup failed', error: err.message });
   }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const user = await User.create({
-    name,
-    email,
-    password: hashedPassword,
-    role: role || 'user' // ✅ allow role, fallback to 'user'
-  });
-
-  res.status(201).json({
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    token: generateToken(user._id)
-  });
 };
 
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
 
-// Login
-exports.loginUser = async (req, res) => {
-  const { email, password } = req.body;
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
 
-  const user = await User.findOne({ email });
-  const isMatch = user && await bcrypt.compare(password, user.password);
-
-  if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
-
-  res.json({
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    token: generateToken(user._id)
-  });
+    const token = createToken(user);
+    res.json({ token });
+  } catch (err) {
+    res.status(500).json({ message: 'Login failed', error: err.message });
+  }
 };
